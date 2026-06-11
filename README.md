@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Research Gap Agent
 
 ## Overview
@@ -186,3 +187,7 @@ Agentic AI in Scientific Publishing
 * Future Research Roadmap
 * Multi-Agent Execution Log
 * Final Report
+=======
+# research-gap-agent
+An AI-powered multi-agent system for literature analysis, research gap discovery, innovation generation, and automated report creation using LangGraph and LLMs.
+>>>>>>> 55c627d6fa1e23c2186c2109138585eb505d0429

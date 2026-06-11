@@ -12,4 +12,5 @@ class AgentState(TypedDict):
     innovation: str
     critique: str
     report: str
+    research_landscape: dict
 

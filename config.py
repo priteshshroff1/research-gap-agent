@@ -46,7 +46,7 @@ MAX_SEARCH_QUERIES = 10
 # Ranking Configuration
 # ==========================
 
-TOP_K_PAPERS = 5
+TOP_K_PAPERS = 3
 
 # ==========================
 # Reflection Agent
