@@ -1,6 +1,8 @@
 # 🔬 Research Gap Agent
 
-An AI-powered **Multi-Agent Research Intelligence Platform** that automates literature analysis, discovers research gaps, identifies innovation opportunities, and generates comprehensive research reports using **LangGraph**, **Groq LLM**, and openAlex.
+An **AI-powered Multi-Agent Research Intelligence Platform** that automates literature analysis, discovers research gaps, identifies innovation opportunities, and generates comprehensive research reports using **LangGraph**, **Groq LLM**, and **OpenAlex**.
+
+The platform leverages a team of specialized AI agents to search scientific literature, rank research papers using citation-aware intelligence, analyze trends, identify research gaps, and propose future research directions.
 
 ---
 
@@ -8,16 +10,17 @@ An AI-powered **Multi-Agent Research Intelligence Platform** that automates lite
 
 * 🤖 Multi-Agent AI Workflow using LangGraph
 * 🔍 Intelligent Query Expansion
-* 📚 Automated Literature Search
-* 📊 Citation & Impact-aware Paper Ranking
+* 📚 Automated Literature Search using OpenAlex
+* 📊 Citation-aware Research Ranking
 * 📈 Publication Trend Analysis
-* 🏆 Research Intelligence Dashboard
-* 🔬 Research Gap Discovery
+* ⭐ Research Impact Scoring
+* 🏆 Top Influential Papers Identification
+* 🔬 Automated Research Gap Discovery
 * 💡 Innovation Opportunity Generation
-* 🛡️ Critic Agent Validation
-* 📑 AI-generated Research Report
-* 📄 PDF Export
-* ⚡ Interactive Streamlit UI
+* 🛡️ AI Critic Validation
+* 📑 Comprehensive Research Intelligence Report
+* 📄 PDF Report Download
+* ⚡ Interactive Streamlit Dashboard
 
 ---
 
@@ -69,47 +72,54 @@ An AI-powered **Multi-Agent Research Intelligence Platform** that automates lite
 
 # 🔄 Workflow
 
-1. **Planner Agent** understands the research topic and creates an execution plan.
-2. **Query Expansion Agent** generates multiple openalex search queries.
-3. **Search Agent** retrieves relevant literature from OpenAlex 
-4. **Ranking Agent** prioritizes papers using relevance, citation count, publication recency, and impact score.
-5. **Analysis Agent** performs literature analysis on the highest-ranked papers.
-6. **Reflection Agent** evaluates whether additional literature is required.
-7. If confidence is low, the workflow loops back to the **Search Agent** for additional retrieval.
-8. Otherwise, the **Gap Agent** identifies research gaps.
-9. The **Innovation Agent** proposes novel research ideas and opportunities.
-10. The **Critic Agent** validates and refines the findings.
-11. The **Report Agent** generates a comprehensive AI-powered research intelligence report.
+1. **Planner Agent** understands the user's research topic and creates an execution plan.
+2. **Query Expansion Agent** generates semantic search queries.
+3. **Search Agent** retrieves research papers from OpenAlex.
+4. **Ranking Agent** prioritizes papers using:
+
+   * Semantic Relevance
+   * Citation Count
+   * Publication Recency
+   * Research Impact Score
+5. **Analysis Agent** analyzes the highest-quality literature.
+6. **Reflection Agent** evaluates whether sufficient evidence exists.
+7. If needed, the workflow loops back to the **Search Agent** for additional retrieval.
+8. **Gap Agent** identifies research gaps.
+9. **Innovation Agent** proposes novel research opportunities.
+10. **Critic Agent** validates and strengthens the findings.
+11. **Report Agent** generates the final AI-powered research intelligence report.
 
 ---
 
-# 📊 Research Intelligence
+# 📊 Research Intelligence Dashboard
 
-The Ranking Agent enriches the research pipeline by generating:
+The dashboard automatically generates:
 
-* 📄 Total Papers Analyzed
+* 📄 Papers Retrieved
 * ⭐ Average Citation Count
 * 🏆 Highest Citation Count
-* 📈 Publication Trends
+* 📈 Publication Trend
 * 🔥 Research Momentum
 * 🥇 Top Influential Papers
 * 📊 Research Impact Score
 
-This enables downstream agents to focus on the most impactful and relevant research.
+These insights help researchers quickly understand the maturity and influence of a research domain before diving into detailed literature analysis.
 
 ---
 
-# 📑 Generated Report Includes
+# 📑 Final Report Includes
 
 * Executive Summary
 * Research Landscape
 * Literature Analysis
+* Citation Intelligence
+* Publication Trends
 * Research Gaps
 * Innovation Opportunities
 * Novelty Assessment
-* Future Research Roadmap
+* Future Research Directions
 * Critic Review
-* Final Recommendation
+* Final Recommendations
 
 ---
 
@@ -119,7 +129,7 @@ This enables downstream agents to focus on the most impactful and relevant resea
 * LangGraph
 * LangChain
 * Groq LLM
-* openalex 
+* OpenAlex API
 * Streamlit
 * ReportLab
 
@@ -145,8 +155,12 @@ research-gap-agent/
 │── prompts/
 
 │── services/
+│      llm_service.py
+│      openalex_service.py
+│      prompt_manager.py
 
 │── utils/
+│      pdf_generator.py
 
 │── reports/
 
@@ -179,9 +193,9 @@ Create a `.env` file:
 
 ```text
 GROQ_API_KEY=your_groq_api_key
-
-
 ```
+
+*(OpenAlex is open and does not require an API key for basic usage.)*
 
 ---
 
@@ -197,14 +211,29 @@ streamlit run app.py
 
 * Enter a research topic.
 * AI expands search queries.
-* Relevant papers are retrieved.
-* Papers are ranked using Research Intelligence scoring.
+* OpenAlex retrieves relevant literature.
+* Papers are ranked using citation-aware research intelligence.
 * Literature is analyzed.
+* Publication trends and citation statistics are generated.
 * Research gaps are identified.
-* Innovation opportunities are generated.
-* Results are validated by the Critic Agent.
-* A comprehensive research intelligence report is produced.
-* The report can be downloaded as a PDF.
+* Innovation opportunities are proposed.
+* Findings are validated by the Critic Agent.
+* A comprehensive research intelligence report is generated.
+* Report can be downloaded as a PDF.
+
+---
+
+# ⚡ Performance Optimizations
+
+To optimize Groq token usage and improve response time:
+
+* Only the **Top 5 ranked papers** are analyzed.
+* Abstracts are truncated to **300 characters**.
+* Only the **first 3 authors** are retained.
+* Intermediate agent outputs are compressed before report generation.
+* Citation statistics and publication trends are computed programmatically instead of consuming LLM tokens.
+
+These optimizations significantly reduce token consumption while preserving report quality.
 
 ---
 
@@ -216,8 +245,8 @@ streamlit run app.py
 * Knowledge Graph Generation
 * Patent Intelligence Integration
 * Funding Opportunity Discovery
-* Multi-source Literature Search
 * AI-powered Research Roadmap Generator
+* Multi-source Literature Search (OpenAlex + CrossRef + Semantic Scholar)
 
 ---
 
@@ -227,8 +256,10 @@ MIT License
 
 ---
 
-## 🌟 Vision
+# 🌟 Vision
 
-Move beyond traditional literature reviews and transform scientific publications into actionable research intelligence.
+Traditional literature reviews summarize published work.
 
-**From publishing knowledge to powering scientific discovery through AI.**
+**Research Gap Agent goes one step further—transforming scientific publications into actionable research intelligence by combining citation analytics, AI-driven gap discovery, and innovation opportunity generation.**
+
+**From literature review to research intelligence—accelerating scientific discovery through AI.**
